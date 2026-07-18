@@ -29,11 +29,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'kode_produk' => '',
-            'nama_produk' => '',
-            'harga' => '',
-            'stok' => '',
+            'kode_produk' => 'required|alpha_num|unique:products,kode_produk',
+            'nama_produk' => 'required',
+            'harga' => 'required|numeric',
+            'stok' => 'required|integer',
         ]);
+
         Product::create($validated);
         return redirect()->route('products.index')->with('success', 'product added successfully.');
     }

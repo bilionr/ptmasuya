@@ -1,4 +1,19 @@
 <x-layout>
+    @if (session('success'))
+        <div class="max-w-6xl mx-auto mt-4 px-4">
+            <div class="bg-green-50 border border-green-200 text-green-700 text-sm rounded-lg px-4 py-3">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="max-w-6xl mx-auto mt-4 px-4">
+            <div class="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">
+                {{ session('error') }}
+            </div>
+        </div>
+    @endif
     <div class="max-w-2xl mx-auto mt-8 px-4">
         <h1 class="text-xl font-semibold text-gray-800 mb-6">Add Customer</h1>
 

@@ -33,14 +33,8 @@ return new class extends Migration
         });
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('no_inv', 30)->unique(); // format INV/2507/0001
-
-            // customer_id sebagai FK; restrictOnDelete supaya customer yang sudah
-            // punya transaksi tidak bisa dihapus (aturan 2c).
+            $table->string('no_inv', 30)->unique();
             $table->foreignId('customer_id')->constrained('customers')->restrictOnDelete();
-
-            // snapshot data customer pada saat transaksi dibuat (histori tidak berubah
-            // walau data master customer diedit di kemudian hari)
             $table->string('kode_customer', 50);
             $table->string('nama_customer', 150);
             $table->string('alamat_customer', 500)->nullable();

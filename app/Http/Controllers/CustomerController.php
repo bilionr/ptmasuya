@@ -31,7 +31,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'kode_customer' => '',
+            'kode_customer'   => 'required|alpha_num|unique:customers,kode_customer',
             'nama_customer' => '',
             'alamat_lengkap' => '',
             'provinsi' => '',
@@ -39,7 +39,8 @@ class CustomerController extends Controller
             'kecamatan' => '',
             'kelurahan' => '',
             'kode_pos' => '',
-        ]);
+        ], [
+        'kode_customer.unique' => 'Kode Customer sudah digunakan.']);
         Customer::create($validated);
         return redirect()->route('customers.index')->with('success', 'Customer added successfully.');
     }
