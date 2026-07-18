@@ -2,7 +2,7 @@
   <div class="container flex flex-wrap items-center justify-between mx-auto text-slate-800">
     <a href="#"
       class="mr-4 block cursor-pointer py-1.5 text-base text-slate-800 font-semibold">
-      Material Tailwind
+      PT MASUYA
     </a>
     <div class="hidden lg:block">
       <ul class="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -26,7 +26,7 @@
           class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
  
  
-          <a href="#" class="flex items-center">
+          <a href="{{ route('transactions.index') }}" class="flex items-center">
             Transaction
           </a>
         </li>

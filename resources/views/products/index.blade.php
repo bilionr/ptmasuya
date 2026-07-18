@@ -19,7 +19,7 @@
 <div class="max-w-6xl mx-auto mt-8 px-4">
     <div class="flex items-center justify-between mb-4">
         <h1 class="text-xl font-semibold text-gray-800">Products</h1>
-        <a href="{{ route('customers.create') }}"
+        <a href="{{ route('products.create') }}"
             class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
             + Add Product
         </a>
