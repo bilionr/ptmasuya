@@ -31,6 +31,12 @@ return new class extends Migration
             $table->string('kode_pos', 10)->nullable();
             $table->timestamps();
         });
+        Schema::create('invoice_sequences', function (Blueprint $table) {
+            $table->id();
+            $table->string('period_key', 6)->unique(); // format: YYMM, contoh 2507
+            $table->unsignedInteger('last_number')->default(0);
+            $table->timestamps();
+        });
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('no_inv', 30)->unique(); // format INV/2507/0001
@@ -75,11 +81,6 @@ return new class extends Migration
 
             $table->index('no_inv');
         });
-
-
-
-
-
     }
 
     /**
@@ -87,6 +88,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('transaction_details');
+        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('invoice_sequences');
+        Schema::dropIfExists('customers');
+        Schema::dropIfExists('products');
     }
 };
