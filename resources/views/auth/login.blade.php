@@ -8,23 +8,23 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form action="#" method="POST" class="space-y-6">
+      <form action="{{ route('login') }}" method="POST" class="space-y-6">
         <div>
-          <label for="email" class="block text-sm/6 font-medium text-gray-100">Email address</label>
+          <label for="email" class="block text-sm/6 font-semibold text-black">Email address [admin@gmail.com]</label>
           <div class="mt-2">
-            <input id="email" type="email" name="email" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+              <input id="email" type="email" name="email" class="block w-full rounded-md bg-white border-2 border-purple-300 px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-600/20 sm:text-sm/6" />
           </div>
-        </div>
+      </div>
 
         <div>
           <div class="flex items-center justify-between">
-            <label for="password" class="block text-sm/6 font-medium text-gray-100">Password</label>
+            <label for="password" class="block text-sm/6 font-medium text-black">Password [admin]</label>
             <div class="text-sm">
               <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300">Forgot password?</a>
             </div>
           </div>
           <div class="mt-2">
-            <input id="password" type="password" name="password" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+            <input id="password" type="password" name="password" class="block w-full rounded-md bg-white border-2 border-purple-300 px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-600/20 sm:text-sm/6" />
           </div>
         </div>
 
@@ -34,8 +34,7 @@
       </form>
 
       <p class="mt-10 text-center text-sm/6 text-gray-400">
-        Not a member?
-        <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300">Start a 14 day free trial</a>
+        <a href="{{ route('register') }}" class="font-semibold text-indigo-400 hover:text-indigo-300">Register</a>
       </p>
     </div>
   </div>

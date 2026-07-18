@@ -65,7 +65,7 @@ class TransactionController extends Controller
                 'customer_id' => $customer->id,
                 'kode_customer' => $customer->kode_customer,
                 'nama_customer' => $customer->nama_customer,
-                'alamat_customer' => $customer->alamat_customer,
+                'alamat_customer' => $customer->alamat_lengkap,
                 'tgl_inv' => $validated['tgl_inv'],
                 'total' => 0,
             ]);

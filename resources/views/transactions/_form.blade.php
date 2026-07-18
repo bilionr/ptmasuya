@@ -43,7 +43,7 @@
     @enderror
     <div class="mt-8 border-t border-gray-200 pt-6">
         <div class="flex items-center justify-between mb-4">
-            <h2 class="text-lg font-semibold text-gray-800">Detail Transaksi</h2>
+            <h2 class="text-lg font-semibold text-gray-800">Detail Transaksi [Enter to Apply]</h2>
             <button type="button" id="addRow" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm">+ Add Product</button>
         </div>
         <div class="overflow-x-auto border border-gray-200 rounded-lg">
