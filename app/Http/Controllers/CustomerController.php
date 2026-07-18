@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Transaction;
 
 class CustomerController extends Controller
 {
@@ -30,13 +31,17 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => '',
-            'email' => '',
-            'phone' => '',
-            'status' => '',
+            'kode_customer' => '',
+            'nama_customer' => '',
+            'alamat_lengkap' => '',
+            'provinsi' => '',
+            'kota' => '',
+            'kecamatan' => '',
+            'kelurahan' => '',
+            'kode_pos' => '',
         ]);
         Customer::create($validated);
-        return redirect()->route('customers.index');
+        return redirect()->route('customers.index')->with('success', 'Customer added successfully.');
     }
 
     /**
@@ -60,11 +65,19 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
+        $validated = $request->validate([
+            'nama_customer'   => '',
+            'alamat_lengkap'  => '',
+            'provinsi'        => '',
+            'kota'            => '',
+            'kecamatan'       => '',
+            'kelurahan'       => '',
+            'kode_pos'        => '',
+        ]);
 
-        $customer->update($request);
+        $customer->update($validated);
 
         return redirect()->route('customers.index')
             ->with('success', 'Customer updated successfully.');
@@ -76,8 +89,27 @@ class CustomerController extends Controller
     public function destroy(string $id)
     {
         $customer = Customer::findOrFail($id);
-        $customer->delete();
+        // Nice UX: check for related transactions before attempting delete
+        if ($customer->transactions()->exists()) {
+            return redirect()->route('customers.index')
+                ->with('error', "Cannot delete '{$customer->nama_customer}' because it still has related transactions. Please remove or reassign those transactions first.");
+        }
 
-        return redirect()->route('customers.index');
+        try {
+            $customer->delete();
+
+            return redirect()->route('customers.index')
+                ->with('success', 'Customer deleted successfully.');
+
+        } catch (QueryException $e) {
+            // Safety net: catches 1451 or any other FK violation (error code 23000)
+            if ($e->getCode() === '23000') {
+                return redirect()->route('customers.index')
+                    ->with('error', "Cannot delete '{$customer->nama_customer}' because it is referenced by other records.");
+            }
+
+            // Re-throw anything unexpected so it's not silently swallowed
+            throw $e;
+        }
     }
 }

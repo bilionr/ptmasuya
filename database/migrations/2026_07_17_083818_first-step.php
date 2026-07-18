@@ -58,12 +58,10 @@ return new class extends Migration
             $table->index('tgl_inv');
         });
         Schema::create('transaction_details', function (Blueprint $table) {
-            $table->id(); // id detail transaksi (unik)
+            $table->id();
             $table->foreignId('transaction_id')->constrained('transactions')->cascadeOnDelete();
             $table->string('no_inv', 30);
 
-            // product_id sebagai FK; restrictOnDelete supaya produk yang sudah
-            // dipakai transaksi tidak bisa dihapus (aturan 1c).
             $table->foreignId('product_id')->constrained('products')->restrictOnDelete();
 
             // snapshot data produk pada saat transaksi dibuat

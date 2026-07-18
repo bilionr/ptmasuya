@@ -18,7 +18,7 @@
           class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
  
  
-          <a href="#" class="flex items-center">
+          <a href="{{ route('products.index') }}" class="flex items-center">
             Product
           </a>
         </li>
